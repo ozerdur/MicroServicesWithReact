@@ -69,5 +69,5 @@ add 127.0.0.1 posts.com to /etc/hosts file
 ## Skaffold
 
 - Used to automate kubectl tasks
-  brew install skaffold
-  skaffold dev
+- brew install skaffold
+- skaffold dev

@@ -40,11 +40,15 @@ function handleEvent(type, data) {
 
 app.listen(4002, async () => {
   console.log("Listening on 4002");
-  const res = await axios.get("http://localhost:4005/events");
-
-  console.log(res.data);
-  for (let event of res.data) {
-    console.log("Handle Event", event);
-    handleEvent(event.type, event.data);
+  try {
+    const res = await axios.get("http://event-bus-srv:4005/events");
+    console.log(res.data);
+    for (let event of res.data) {
+      console.log("Handle Event", event);
+      handleEvent(event.type, event.data);
+    }
+  } catch (err) {
+    //crashes at startup in skaffold when event-bus is not ready yet
+    console.log(err);
   }
 });
